@@ -1,0 +1,32 @@
+{
+  "test_inventory": {
+    "availability.test.ts": {
+      "baseline": 24,
+      "final": 24,
+      "original_names_in_order": true,
+      "original_expect_lines_preserved_in_order": true
+    },
+    "explain.test.ts": {
+      "baseline": 16,
+      "final": 21,
+      "original_names_in_order": true,
+      "original_expect_lines_preserved_in_order": true
+    },
+    "roomFiltering.test.ts": {
+      "baseline": 16,
+      "final": 16,
+      "original_names_in_order": true,
+      "original_expect_lines_preserved_in_order": true
+    }
+  },
+  "runtime_used": {
+    "node": "24.22.3",
+    "npm": "11.19.1"
+  },
+  "supabase_source_references": [],
+  "supabase_lock_version": "2.57.4",
+  "remote_workflow_files_in_export": [],
+  "root_runtime_pin_files_found": [],
+  "package_engines_field": null,
+  "repository_env_files_in_export": []
+}

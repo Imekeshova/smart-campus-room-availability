@@ -1,0 +1,13 @@
+{
+  "all_names_and_bytes_match": true,
+  "files_in_uploaded_dist": {
+    "assets/index-BMdRB55P.css": "3a21c9ef34beb54e65ad517fed8767a40a6a7881aae2de1027056c706555f3e5",
+    "assets/index-BRuLcLay.js": "4fd7263fd3a617585ebe4064153a145943c5f1488d97788787d2ccec33ed4472",
+    "index.html": "a20066860cc12dc66bd1f850c94a047b47b7cd0fa9ca06f7d63bdf1b759f284a"
+  },
+  "files_in_local_build": {
+    "index.html": "a20066860cc12dc66bd1f850c94a047b47b7cd0fa9ca06f7d63bdf1b759f284a",
+    "assets/index-BMdRB55P.css": "3a21c9ef34beb54e65ad517fed8767a40a6a7881aae2de1027056c706555f3e5",
+    "assets/index-BRuLcLay.js": "4fd7263fd3a617585ebe4064153a145943c5f1488d97788787d2ccec33ed4472"
+  }
+}

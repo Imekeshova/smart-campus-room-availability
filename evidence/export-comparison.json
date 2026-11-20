@@ -1,0 +1,91 @@
+{
+  "archives": {
+    "baseline": {
+      "name": "project-bolt-sb1-rnfy6z5k.zip",
+      "sha256": "7ac0d768ca6cf012b3ff1f075e4ecff742c99b19d5cf8c54498e53e1dffdcfc8"
+    },
+    "final": {
+      "name": "project-bolt-sb1-sjy8mrtr.zip",
+      "sha256": "ef22f5a8db9322aee2d16d8dc44b178c2a92317e16f4e7e137f65ca07b53a89a"
+    }
+  },
+  "changed_source_files": [
+    "AGENTS.md",
+    "README.md",
+    "src/lib/explain.test.ts",
+    "src/lib/explain.ts"
+  ],
+  "distribution_files": {
+    "baseline": [],
+    "final": [
+      "dist/assets/index-BMdRB55P.css",
+      "dist/assets/index-BRuLcLay.js",
+      "dist/index.html"
+    ]
+  },
+  "sources": {
+    "baseline": {
+      ".bolt/config.json": "da87f3867aa1c920ea2dc6b29775a1be2bcf844ee6caa7b947341fae1a7b1b91",
+      ".bolt/prompt": "42def6ea7c0d74a7a1fd64b4a10a309872466bf38de50210f6764ed95c4bc1e6",
+      ".gitignore": "6ae83bdb0e630c92f89f974c893b6cddd9490371a50a59b04080da0c2ccef422",
+      "AGENTS.md": "1e71573bf3c9c5758f719ec0b02a89cf5f452afc1cceaf4103ff10fc54978c60",
+      "eslint.config.js": "fa3cc12579fb0ef678a3153b31ec396d81ef2fec284a1a5ecb779c0ff336cfe0",
+      "index.html": "62fb3c8eb94c55c80d6bdb7974ba6afa9b34a0adf8e354dd3b382ecc1b8ad74e",
+      "package-lock.json": "d044f2f58087c3f5abbeda8bfbbe9d4ab654336d43e7a0b0be02b2f004757dd7",
+      "package.json": "a665601fd8517a6efeaa089a42f6896807c1ed42725935313039393ae4e235db",
+      "postcss.config.js": "e32657baf631d7c5f4dc67b4b2ee0ec8e7d5b3c41860e09cddce7c0377cd80bc",
+      "src/App.tsx": "da95de96ba2ca7c724b908518aac8ca300a9ee71a7e13a59b2624001d1057d4b",
+      "src/components/ResultBanner.tsx": "6ab03edca29fc04691f50e61b9d17c1efd710599c5c6f75dbb7884bce3344898",
+      "src/components/RoomCard.tsx": "cda4e861fb3c89e7085dbdfa1edfb7d5e7bc3e9dd68087b36216676dfe450a4b",
+      "src/components/RoomFilters.tsx": "1bf62c953f40df3cd3a7196f3998854ce1e0aae4534b054cf1e260dc8506d874",
+      "src/components/Timeline.tsx": "2f3d7396bf1d4322fa15eeaecbc51cc5d67c20175ad6d96cd3ae306f59575342",
+      "src/index.css": "cc1a7ad0d019ddb1d32d0ecb588ba0ac26ce41d8625dd6c366348b25f83a28ec",
+      "src/lib/availability.test.ts": "730128205e7b51ec293c29d6ad1e0cb1e19d354cc97a251f2822c2b58368706b",
+      "src/lib/availability.ts": "91a41bd3bc1e776744c590dd6adad4a53f9b8765d375272b669f0f6fdf4ca003",
+      "src/lib/explain.test.ts": "d355005450abe8a1343b33a7b23e841cc601746fef5e1bd87f7a74032f7ce2bf",
+      "src/lib/explain.ts": "193cdd4bc40151ac2df9090ab5df2573583cba3b3b28d463a05086bce223edc3",
+      "src/lib/roomData.ts": "82fc70cff7062b3a16a70a5c90bc51768acb717531fe3b82500b3c04e00de2d4",
+      "src/lib/roomFiltering.test.ts": "b3cedec471ce7d87479057ac3561d57fd39ef744bd0fbbad305771a01f4a315c",
+      "src/lib/roomFiltering.ts": "5a3c53f70b224a0943ee3e2a115907c45df10de0f56317a5c5ba4a9f6e296753",
+      "src/main.tsx": "832842269af94b055b2cd42fd27a0f212773b36d20083b631b863cbb5f0fd09e",
+      "src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+      "tailwind.config.js": "316c86f90ec708a4e953dbba5f6064ddae1feb701754f872b599c4bc2a0aceb5",
+      "tsconfig.app.json": "9750ea1ad666ba467781ab8e047a2337b7692b774de0865a98dbd189ca3fd87e",
+      "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+      "tsconfig.node.json": "a96b9ba5e40d95b92adf56431fdf9cbe25b5c2557621f0666615bff6889dfc50",
+      "vite.config.ts": "15e39e0c9e4539c1a425babec469b76b8170a83638ed1413ceeea0133d8dc1ab"
+    },
+    "final": {
+      ".bolt/config.json": "da87f3867aa1c920ea2dc6b29775a1be2bcf844ee6caa7b947341fae1a7b1b91",
+      ".bolt/prompt": "42def6ea7c0d74a7a1fd64b4a10a309872466bf38de50210f6764ed95c4bc1e6",
+      ".gitignore": "6ae83bdb0e630c92f89f974c893b6cddd9490371a50a59b04080da0c2ccef422",
+      "AGENTS.md": "90282f080ace84c9cf0a2f62511322eb8d8d9321478cad83cd645a50a16b65bd",
+      "README.md": "cd8b060fe7b7a06557ee6b97b85f8dd85d6fd283b42557f40963a410a46db1c1",
+      "eslint.config.js": "fa3cc12579fb0ef678a3153b31ec396d81ef2fec284a1a5ecb779c0ff336cfe0",
+      "index.html": "62fb3c8eb94c55c80d6bdb7974ba6afa9b34a0adf8e354dd3b382ecc1b8ad74e",
+      "package-lock.json": "d044f2f58087c3f5abbeda8bfbbe9d4ab654336d43e7a0b0be02b2f004757dd7",
+      "package.json": "a665601fd8517a6efeaa089a42f6896807c1ed42725935313039393ae4e235db",
+      "postcss.config.js": "e32657baf631d7c5f4dc67b4b2ee0ec8e7d5b3c41860e09cddce7c0377cd80bc",
+      "src/App.tsx": "da95de96ba2ca7c724b908518aac8ca300a9ee71a7e13a59b2624001d1057d4b",
+      "src/components/ResultBanner.tsx": "6ab03edca29fc04691f50e61b9d17c1efd710599c5c6f75dbb7884bce3344898",
+      "src/components/RoomCard.tsx": "cda4e861fb3c89e7085dbdfa1edfb7d5e7bc3e9dd68087b36216676dfe450a4b",
+      "src/components/RoomFilters.tsx": "1bf62c953f40df3cd3a7196f3998854ce1e0aae4534b054cf1e260dc8506d874",
+      "src/components/Timeline.tsx": "2f3d7396bf1d4322fa15eeaecbc51cc5d67c20175ad6d96cd3ae306f59575342",
+      "src/index.css": "cc1a7ad0d019ddb1d32d0ecb588ba0ac26ce41d8625dd6c366348b25f83a28ec",
+      "src/lib/availability.test.ts": "730128205e7b51ec293c29d6ad1e0cb1e19d354cc97a251f2822c2b58368706b",
+      "src/lib/availability.ts": "91a41bd3bc1e776744c590dd6adad4a53f9b8765d375272b669f0f6fdf4ca003",
+      "src/lib/explain.test.ts": "4a90be6e6182dc3d7aad11b06899f439da0c226a4268e5adbe9586a184343189",
+      "src/lib/explain.ts": "c699550f695b6af5fe3dc08c2a8443ce71cc44fd871b8e3dea2e771b9eee6133",
+      "src/lib/roomData.ts": "82fc70cff7062b3a16a70a5c90bc51768acb717531fe3b82500b3c04e00de2d4",
+      "src/lib/roomFiltering.test.ts": "b3cedec471ce7d87479057ac3561d57fd39ef744bd0fbbad305771a01f4a315c",
+      "src/lib/roomFiltering.ts": "5a3c53f70b224a0943ee3e2a115907c45df10de0f56317a5c5ba4a9f6e296753",
+      "src/main.tsx": "832842269af94b055b2cd42fd27a0f212773b36d20083b631b863cbb5f0fd09e",
+      "src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+      "tailwind.config.js": "316c86f90ec708a4e953dbba5f6064ddae1feb701754f872b599c4bc2a0aceb5",
+      "tsconfig.app.json": "9750ea1ad666ba467781ab8e047a2337b7692b774de0865a98dbd189ca3fd87e",
+      "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+      "tsconfig.node.json": "a96b9ba5e40d95b92adf56431fdf9cbe25b5c2557621f0666615bff6889dfc50",
+      "vite.config.ts": "15e39e0c9e4539c1a425babec469b76b8170a83638ed1413ceeea0133d8dc1ab"
+    }
+  }
+}

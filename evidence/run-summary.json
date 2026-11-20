@@ -1,0 +1,74 @@
+{
+  "baseline-install": {
+    "command": "npm ci --no-audit --no-fund --fetch-retries=0 --fetch-timeout=20000",
+    "exit": 0,
+    "seconds": 9.7,
+    "log": "baseline-install.txt"
+  },
+  "baseline-lint": {
+    "command": "npm run lint",
+    "exit": 0,
+    "seconds": 1.19,
+    "log": "baseline-lint.txt"
+  },
+  "baseline-typecheck": {
+    "command": "npm run typecheck",
+    "exit": 0,
+    "seconds": 1.58,
+    "log": "baseline-typecheck.txt"
+  },
+  "baseline-test": {
+    "command": "npm test -- --pool=threads --poolOptions.threads.singleThread --reporter=verbose",
+    "exit": 0,
+    "seconds": 1.71,
+    "log": "baseline-test.txt"
+  },
+  "baseline-build": {
+    "command": "npm run build",
+    "exit": 0,
+    "seconds": 1.75,
+    "log": "baseline-build.txt"
+  },
+  "final-install": {
+    "command": "npm ci --no-audit --no-fund --fetch-retries=0 --fetch-timeout=20000",
+    "exit": 0,
+    "seconds": 2.53,
+    "log": "final-install.txt"
+  },
+  "final-lint": {
+    "command": "npm run lint",
+    "exit": 0,
+    "seconds": 1.66,
+    "log": "final-lint.txt"
+  },
+  "final-test": {
+    "command": "npm test -- --pool=threads --poolOptions.threads.singleThread --reporter=verbose",
+    "exit": 0,
+    "seconds": 1.81,
+    "log": "final-test.txt"
+  },
+  "final-typecheck": {
+    "command": "npm run typecheck",
+    "exit": 0,
+    "seconds": 1.94,
+    "log": "final-typecheck.txt"
+  },
+  "final-build": {
+    "command": "npm run build",
+    "exit": 0,
+    "seconds": 1.72,
+    "log": "final-build.txt"
+  },
+  "red-install": {
+    "command": "npm ci --offline --no-audit --no-fund",
+    "exit": 0,
+    "seconds": 2.18,
+    "log": "red-install.txt"
+  },
+  "red-test": {
+    "command": "npm test -- --pool=threads --poolOptions.threads.singleThread --reporter=verbose",
+    "exit": 1,
+    "seconds": 1.56,
+    "log": "red-test.txt"
+  }
+}

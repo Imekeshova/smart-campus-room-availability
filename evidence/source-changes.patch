@@ -1,0 +1,255 @@
+diff --git a/AGENTS.md b/AGENTS.md
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -11,6 +11,7 @@
+ - src/lib/roomData.ts — room and booking data.
+ - src/lib/availability.ts — booking validation rules.
+ - src/lib/roomFiltering.ts — room filtering and selection logic.
++- src/lib/explain.ts — explanation module: maps rejection reasons to reason codes, validates explanation input/output, and produces or falls back to human-readable explanations.
+ - src/components/ — reusable UI components.
+ - src/lib/*.test.ts — automated tests.
+ 
+@@ -45,6 +46,22 @@
+ - npm run lint
+ - npm run build
+ 
++## Safe Commands
++Read-only and verification commands are safe to run freely:
++- npm ci
++- npm run dev
++- npm run typecheck
++- npm test (with any flags)
++- npm run lint
++- npm run build
++
++## Safety Rules
++- Require human review before any merge or deployment.
++- Never expose secrets, API keys, or environment variables in code, logs, or documentation.
++- Never perform production deployments.
++- Never run destructive commands (deleting files, dropping data, force operations).
++- Never change dependencies without prior human approval.
++
+ ## AI Assistant Instructions
+ 1. Inspect the existing code before suggesting changes.
+ 2. Identify a concrete maintainability problem.
+diff --git a/README.md b/README.md
+new file mode 100644
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,26 @@
++# Smart Campus — Room Availability Checker
++
++A React + TypeScript application that lets students select a university room and check whether it is available for a requested time interval, using fictional room and booking data. No backend, no saved bookings.
++
++## Setup
++
++```bash
++npm ci
++```
++
++## Local startup
++
++```bash
++npm run dev
++```
++
++## Verification commands
++
++```bash
++npm test -- --pool=threads --poolOptions.threads.singleThread --reporter=verbose
++npm run typecheck
++npm run lint
++npm run build
++```
++
++See [AGENTS.md](AGENTS.md) for project rules and contribution constraints.
+diff --git a/src/lib/explain.test.ts b/src/lib/explain.test.ts
+--- a/src/lib/explain.test.ts
++++ b/src/lib/explain.test.ts
+@@ -1,4 +1,6 @@
+ import { describe, expect, test } from "vitest";
++import { checkAvailability } from "@/lib/availability";
++import { ROOMS, type Room } from "@/lib/roomData";
+ import {
+   EXPLAIN_MOCK_UNAVAILABLE,
+   explainAvailability,
+@@ -8,6 +10,7 @@
+   validateExplainInput,
+   validateExplainOutput,
+   type ExplainInput,
++  type ReasonCode,
+ } from "@/lib/explain";
+ 
+ function makeInput(overrides: Partial<ExplainInput> = {}): ExplainInput {
+@@ -128,6 +131,62 @@
+   });
+ });
+ 
++describe("regression guards", () => {
++  const orionInput: ExplainInput = {
++    roomLabel: "Orion Computer Lab O-202",
++    start: "11:30",
++    end: "12:30",
++    isAvailable: false,
++    reasonCode: "overlap",
++  };
++
++  test("rejects a false confirmation for an unavailable Orion slot", () => {
++    expect(validateExplainOutput({ explanation: "Your booking is confirmed." }, orionInput)).toBeNull();
++  });
++
++  test("rejects an overlap explanation naming Cedar instead of Orion", () => {
++    expect(
++      validateExplainOutput(
++        { explanation: "Cedar Collaboration Room C-314 is booked during part of 11:30–12:30." },
++        orionInput
++      )
++    ).toBeNull();
++  });
++
++  test("accepts the correct Orion overlap explanation and rejects a different interval", () => {
++    expect(
++      validateExplainOutput(
++        { explanation: "Orion Computer Lab O-202 is booked during part of 11:30–12:30." },
++        orionInput
++      )
++    ).toEqual({ explanation: "Orion Computer Lab O-202 is booked during part of 11:30–12:30." });
++
++    expect(
++      validateExplainOutput(
++        { explanation: "Orion Computer Lab O-202 is booked during part of 11:00–12:00." },
++        orionInput
++      )
++    ).toBeNull();
++  });
++
++  test("rejects the undeclared runtime code typo and accepts the declared unknown code", () => {
++    expect(
++      validateExplainInput({ ...orionInput, reasonCode: "typo" as unknown as ReasonCode })
++    ).not.toBeNull();
++    expect(validateExplainInput({ ...orionInput, reasonCode: "unknown" })).toBeNull();
++  });
++
++  test("maps the real Orion overlap reason from checkAvailability to overlap", () => {
++    const orion = ROOMS.find((room) => room.id === "orion-o202") as Room;
++    const result = checkAvailability({ start: 690, end: 750, currentMinutes: 540, room: orion });
++
++    expect(result.status).toBe("unavailable");
++    if (result.status === "unavailable") {
++      expect(reasonToCode(result.reasons[0])).toBe("overlap");
++    }
++  });
++});
++
+ describe("isConsistent", () => {
+   test("pairs availability with the right codes", () => {
+     expect(isConsistent(true, "available")).toBe(true);
+diff --git a/src/lib/explain.ts b/src/lib/explain.ts
+--- a/src/lib/explain.ts
++++ b/src/lib/explain.ts
+@@ -1,12 +1,15 @@
+-export type ReasonCode =
+-  | "invalid-range"
+-  | "past-time"
+-  | "too-long"
+-  | "room-blocked"
+-  | "overlap"
+-  | "invalid-current-time"
+-  | "available"
+-  | "unknown";
++export const REASON_CODES = [
++  "invalid-range",
++  "past-time",
++  "too-long",
++  "room-blocked",
++  "overlap",
++  "invalid-current-time",
++  "available",
++  "unknown",
++] as const;
++
++export type ReasonCode = (typeof REASON_CODES)[number];
+ 
+ export interface ExplainInput {
+   roomLabel: string;
+@@ -47,6 +50,10 @@
+   return "unknown";
+ }
+ 
++export function isReasonCode(value: unknown): value is ReasonCode {
++  return (REASON_CODES as readonly string[]).includes(value as string);
++}
++
+ export function isConsistent(isAvailable: boolean, reasonCode: ReasonCode): boolean {
+   if (isAvailable) return reasonCode === "available";
+   return reasonCode !== "available";
+@@ -69,6 +76,7 @@
+   }
+ 
+   if (typeof isAvailable !== "boolean") return "Availability must be a boolean.";
++  if (!isReasonCode(reasonCode)) return "Reason code is not supported.";
+   if (!isConsistent(isAvailable, reasonCode)) return "Status and reason code are inconsistent.";
+ 
+   return null;
+@@ -81,6 +89,12 @@
+ 
+ function countSentences(text: string): number {
+   return text.split(/[.!?]+/).filter((s) => s.trim() !== "").length;
++}
++
++function expectedReply(input: ExplainInput): ExplainOutput | null {
++  if (!isReasonCode(input.reasonCode)) return null;
++  if (!isConsistent(input.isAvailable, input.reasonCode)) return null;
++  return mockReply(input);
+ }
+ 
+ export function validateExplainOutput(
+@@ -96,12 +110,10 @@
+   if (clean.length > MAX_EXPLANATION) return null;
+   if (countSentences(clean) > MAX_SENTENCES) return null;
+ 
+-  // Wording agreement: a free-slot claim must not appear in an unavailable
+-  // explanation and rejection wording must not appear in an available one.
+-  const contradictory = input.isAvailable
+-    ? /cannot|not be booked|blocked|overlaps|invalid|exceeds|not after|booked during/i
+-    : /\bis free\b|\bis available\b|can be booked/i;
+-  if (contradictory.test(clean)) return null;
++  // Agreement: the cleaned reply must exactly match the expected reply for
++  // this room, interval and reason.
++  const expected = expectedReply(input);
++  if (expected === null || sanitize(expected.explanation) !== clean) return null;
+ 
+   return { explanation: clean };
+ }
+@@ -130,13 +142,7 @@
+   }
+ }
+ 
+-async function runMock(input: ExplainInput): Promise<ExplainOutput> {
+-  await new Promise((resolve) => setTimeout(resolve, MOCK_DELAY_MS));
+-
+-  if (input.roomLabel.trim().toLowerCase() === EXPLAIN_MOCK_UNAVAILABLE) {
+-    throw new Error("mock unavailable");
+-  }
+-
++export function mockReply(input: ExplainInput): ExplainOutput {
+   const room = input.roomLabel.trim();
+   const slot = `${input.start}–${input.end}`;
+   switch (input.reasonCode) {
+@@ -159,6 +165,16 @@
+   }
+ }
+ 
++async function runMock(input: ExplainInput): Promise<ExplainOutput> {
++  await new Promise((resolve) => setTimeout(resolve, MOCK_DELAY_MS));
++
++  if (input.roomLabel.trim().toLowerCase() === EXPLAIN_MOCK_UNAVAILABLE) {
++    throw new Error("mock unavailable");
++  }
++
++  return mockReply(input);
++}
++
+ export async function explainAvailability(
+   input: ExplainInput,
+   options: { timeoutMs?: number } = {}
