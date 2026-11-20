@@ -1,0 +1,159 @@
+$ npm test -- --pool=threads --poolOptions.threads.singleThread --reporter=verbose
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> vite-react-typescript-starter@0.0.0 test
+> vitest run --pool=threads --poolOptions.threads.singleThread --reporter=verbose
+
+
+ RUN  v2.1.9 /workspace/scratch/5cad56f74bfb/work/a5_release/verify/red
+
+ ✓ src/lib/explain.test.ts > reasonToCode > maps every concrete checker reason
+ ✓ src/lib/explain.test.ts > reasonToCode > maps unknown wording to unknown
+ ✓ src/lib/explain.test.ts > validateExplainInput > accepts a valid input
+ ✓ src/lib/explain.test.ts > validateExplainInput > rejects blank and oversized room labels
+ ✓ src/lib/explain.test.ts > validateExplainInput > rejects malformed clock values
+ ✓ src/lib/explain.test.ts > validateExplainInput > accepts a reversed or zero-length interval only for invalid-range
+ ✓ src/lib/explain.test.ts > validateExplainInput > rejects inconsistent status/reason pairs
+ ✓ src/lib/explain.test.ts > validateExplainOutput > accepts matching plain-text output and trims whitespace
+ ✓ src/lib/explain.test.ts > validateExplainOutput > rejects malformed, empty, oversized or multi-sentence output
+ ✓ src/lib/explain.test.ts > validateExplainOutput > rejects output that contradicts the status
+ ✓ src/lib/explain.test.ts > explainAvailability > returns a validated mock explanation 301ms
+ ✓ src/lib/explain.test.ts > explainAvailability > explains the invalid-current-time reason 301ms
+ ✓ src/lib/explain.test.ts > explainAvailability > rejects invalid input before calling the mock
+ ✓ src/lib/explain.test.ts > explainAvailability > falls back when the mock is unavailable 304ms
+ ✓ src/lib/explain.test.ts > explainAvailability > falls back deterministically on timeout
+ × src/lib/explain.test.ts > regression guards > rejects a false confirmation for an unavailable Orion slot
+   → expected { Object (explanation) } to be null
+ × src/lib/explain.test.ts > regression guards > rejects an overlap explanation naming Cedar instead of Orion
+   → expected { Object (explanation) } to be null
+ × src/lib/explain.test.ts > regression guards > accepts the correct Orion overlap explanation and rejects a different interval
+   → expected { Object (explanation) } to be null
+ × src/lib/explain.test.ts > regression guards > rejects the undeclared runtime code typo and accepts the declared unknown code
+   → expected null not to be null
+ ✓ src/lib/explain.test.ts > regression guards > maps the real Orion overlap reason from checkAvailability to overlap
+ ✓ src/lib/explain.test.ts > isConsistent > pairs availability with the right codes
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T01 allows a booking that touches an existing booking after it
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T02 rejects a booking that starts at the current time
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T03 rejects a zero-duration booking
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T04 rejects a reversed time range
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T05 rejects a range that ends after the day
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T06 allows a booking lasting exactly 120 minutes
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T07 rejects a booking lasting 121 minutes
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T08 allows a booking that touches an existing booking before it
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T09 rejects a partial overlap
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T10 rejects a range that contains an existing booking
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T11 rejects a range inside an existing booking
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T12 rejects an identical booking interval
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T13 rejects a booking in a blocked room
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T14 allows a non-overlapping booking when there are no existing bookings
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T15 rejects a request when the current time is empty (NaN)
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > T16 rejects out-of-range or non-integer current times and accepts midnight
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > preserves the original booking data
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > rejects a negative start time at the lower boundary
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > allows a valid booking ending exactly at midnight
+ ✓ src/lib/availability.test.ts > checkAvailability assignment cases > rejects missing start or end input
+ ✓ src/lib/availability.test.ts > getTimelineRange > keeps the daytime window when every interval fits
+ ✓ src/lib/availability.test.ts > getTimelineRange > extends to cover an evening candidate
+ ✓ src/lib/availability.test.ts > getTimelineRange > extends earlier for an early-morning interval
+ ✓ src/lib/availability.test.ts > getTimelineRange > rounds to whole hours and never passes midnight
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > default filters return all four rooms
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > matches a room whose capacity equals the attendee count
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > excludes a room whose capacity is below the attendee count
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > requires every selected equipment item
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > returns no rooms when no room has all selected equipment
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > returns no rooms when attendees exceed every capacity
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > rejects invalid attendee values
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > rejects an empty attendee input
+ ✓ src/lib/roomFiltering.test.ts > filterRooms > does not mutate the catalog or filter inputs
+ ✓ src/lib/roomFiltering.test.ts > getEquipmentOptions > lists each catalog equipment item once, alphabetically
+ ✓ src/lib/roomFiltering.test.ts > resolveSelectedRoom > keeps the selected room when it still matches
+ ✓ src/lib/roomFiltering.test.ts > resolveSelectedRoom > moves to the first matching room when the previous room is excluded
+ ✓ src/lib/roomFiltering.test.ts > resolveSelectedRoom > selects the first match when no room was selected
+ ✓ src/lib/roomFiltering.test.ts > resolveSelectedRoom > returns null when there are no matches
+ ✓ src/lib/roomFiltering.test.ts > filtering combined with availability > a matching blocked room remains unavailable
+ ✓ src/lib/roomFiltering.test.ts > filtering combined with availability > selected matching rooms are checked against their own bookings
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/explain.test.ts > regression guards > rejects a false confirmation for an unavailable Orion slot
+AssertionError: expected { Object (explanation) } to be null
+
+- Expected: 
+null
+
++ Received: 
+Object {
+  "explanation": "Your booking is confirmed.",
+}
+
+ ❯ src/lib/explain.test.ts:144:94
+    142| 
+    143|   test("rejects a false confirmation for an unavailable Orion slot", (…
+    144|     expect(validateExplainOutput({ explanation: "Your booking is confi…
+       |                                                                                              ^
+    145|   });
+    146| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/lib/explain.test.ts > regression guards > rejects an overlap explanation naming Cedar instead of Orion
+AssertionError: expected { Object (explanation) } to be null
+
+- Expected: 
+null
+
++ Received: 
+Object {
+  "explanation": "Cedar Collaboration Room C-314 is booked during part of 11:30–12:30.",
+}
+
+ ❯ src/lib/explain.test.ts:153:7
+    151|         orionInput
+    152|       )
+    153|     ).toBeNull();
+       |       ^
+    154|   });
+    155| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/lib/explain.test.ts > regression guards > accepts the correct Orion overlap explanation and rejects a different interval
+AssertionError: expected { Object (explanation) } to be null
+
+- Expected: 
+null
+
++ Received: 
+Object {
+  "explanation": "Orion Computer Lab O-202 is booked during part of 11:00–12:00.",
+}
+
+ ❯ src/lib/explain.test.ts:169:7
+    167|         orionInput
+    168|       )
+    169|     ).toBeNull();
+       |       ^
+    170|   });
+    171| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/lib/explain.test.ts > regression guards > rejects the undeclared runtime code typo and accepts the declared unknown code
+AssertionError: expected null not to be null
+ ❯ src/lib/explain.test.ts:175:11
+    173|     expect(
+    174|       validateExplainInput({ ...orionInput, reasonCode: "typo" as unkn…
+    175|     ).not.toBeNull();
+       |           ^
+    176|     expect(validateExplainInput({ ...orionInput, reasonCode: "unknown"…
+    177|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  4 failed | 57 passed (61)
+   Start at  11:54:17
+   Duration  1.20s (transform 58ms, setup 0ms, collect 60ms, tests 977ms, environment 0ms, prepare 65ms)
+
+
+Exit code 1

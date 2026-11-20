@@ -1,0 +1,34 @@
+overlap: Unavailable
+touching endpoints: Available
+missing testing clock: Unavailable
+{
+  "actor": "Codex",
+  "environment": "jsdom 26.1.0, built React bundle, synthetic DOM",
+  "results": [
+    {
+      "name": "overlap",
+      "start": "11:30",
+      "end": "12:30",
+      "clock": "09:00",
+      "verdict": "Unavailable",
+      "observedReply": "Orion Computer Lab O-202 is booked during part of 11:30–12:30."
+    },
+    {
+      "name": "touching endpoints",
+      "start": "12:00",
+      "end": "13:00",
+      "clock": "09:00",
+      "verdict": "Available",
+      "observedReply": "Orion Computer Lab O-202 is free from 12:00–13:00."
+    },
+    {
+      "name": "missing testing clock",
+      "start": "11:30",
+      "end": "12:30",
+      "clock": "",
+      "verdict": "Unavailable",
+      "observedReply": "Orion Computer Lab O-202 cannot be checked because the current time is missing or invalid."
+    }
+  ],
+  "errors": []
+}

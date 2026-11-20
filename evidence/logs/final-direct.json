@@ -1,0 +1,58 @@
+{
+  "version": "final",
+  "decision": {
+    "status": "unavailable",
+    "reasons": [
+      "Overlaps existing booking (11:00–12:00)."
+    ]
+  },
+  "reason": "overlap",
+  "acceptedOutput": {
+    "correct": true,
+    "falseConfirmation": false,
+    "wrongRoom": false,
+    "wrongInterval": false,
+    "addedFalseClaim": false
+  },
+  "acceptedCodes": {
+    "23": false,
+    "unknown": true,
+    "typo": false,
+    "null": false
+  },
+  "mockResponses": [
+    {
+      "code": "invalid-range",
+      "output": "Orion Computer Lab O-202 rejected the range 11:30–12:30 because start and end times are invalid."
+    },
+    {
+      "code": "past-time",
+      "output": "Orion Computer Lab O-202 rejected 11:30–12:30 because the start time is not after the current time."
+    },
+    {
+      "code": "too-long",
+      "output": "Orion Computer Lab O-202 rejected 11:30–12:30 because bookings are limited to 120 minutes."
+    },
+    {
+      "code": "room-blocked",
+      "output": "Orion Computer Lab O-202 is blocked, so 11:30–12:30 cannot be booked."
+    },
+    {
+      "code": "overlap",
+      "output": "Orion Computer Lab O-202 is booked during part of 11:30–12:30."
+    },
+    {
+      "code": "invalid-current-time",
+      "output": "Orion Computer Lab O-202 cannot be checked because the current time is missing or invalid."
+    },
+    {
+      "code": "available",
+      "output": "Orion Computer Lab O-202 is free from 11:30–12:30."
+    },
+    {
+      "code": "unknown",
+      "output": "Orion Computer Lab O-202 cannot accept the requested time range."
+    }
+  ],
+  "timeoutFallback": "Orion Computer Lab O-202: the time range overlaps an existing booking."
+}

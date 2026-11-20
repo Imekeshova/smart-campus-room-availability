@@ -1,0 +1,23 @@
+{
+  "version": "baseline",
+  "decision": {
+    "status": "unavailable",
+    "reasons": [
+      "Overlaps existing booking (11:00–12:00)."
+    ]
+  },
+  "reason": "overlap",
+  "acceptedOutput": {
+    "correct": true,
+    "falseConfirmation": true,
+    "wrongRoom": true,
+    "wrongInterval": true,
+    "addedFalseClaim": true
+  },
+  "acceptedCodes": {
+    "23": true,
+    "unknown": true,
+    "typo": true,
+    "null": true
+  }
+}
