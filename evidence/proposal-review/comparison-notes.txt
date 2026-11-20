@@ -1,0 +1,1 @@
+The code snippets supplied in chat were reconstructed for local review. The clean string is initialised before the new checks in this reconstruction. The reason membership change was described in prose only and was not added to the proposed-code comparison.

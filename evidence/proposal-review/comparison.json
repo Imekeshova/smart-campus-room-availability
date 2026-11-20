@@ -1,0 +1,59 @@
+{
+  "overlap": {
+    "proposed": {
+      "explanation": "Orion Computer Lab O-202 is booked during part of 11:30–12:30."
+    },
+    "fixed": {
+      "explanation": "Orion Computer Lab O-202 is booked during part of 11:30–12:30."
+    }
+  },
+  "invalid-current-time": {
+    "proposed": null,
+    "fixed": {
+      "explanation": "Orion Computer Lab O-202 cannot be checked because the current time is missing or invalid."
+    }
+  },
+  "unknown": {
+    "proposed": null,
+    "fixed": {
+      "explanation": "Orion Computer Lab O-202 cannot accept the requested time range."
+    }
+  },
+  "falseAddition": {
+    "proposed": {
+      "explanation": "Orion Computer Lab O-202 is booked during part of 11:30–12:30. Your booking is confirmed."
+    },
+    "fixed": null
+  },
+  "codeMembership": {
+    "23": {
+      "proposedError": null,
+      "fixedError": "Status and reason code are inconsistent."
+    },
+    "unknown": {
+      "proposedError": null,
+      "fixedError": null
+    },
+    "typo": {
+      "proposedError": null,
+      "fixedError": "Status and reason code are inconsistent."
+    },
+    "null": {
+      "proposedError": null,
+      "fixedError": "Status and reason code are inconsistent."
+    }
+  },
+  "fixedMockRoundTrips": [
+    "invalid-range",
+    "past-time",
+    "too-long",
+    "room-blocked",
+    "overlap",
+    "invalid-current-time",
+    "available",
+    "unknown"
+  ],
+  "fixedTimeoutFallback": {
+    "explanation": "Orion Computer Lab O-202: the time range overlaps an existing booking."
+  }
+}
